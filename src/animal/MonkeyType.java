@@ -8,5 +8,6 @@ public enum MonkeyType {
 	SAKI,
 	SPIDER,
 	SQUIRREL,
-	TAMARIN
+	TAMARIN,
+	UNKNOWN;
 }

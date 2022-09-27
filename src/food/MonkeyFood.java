@@ -19,6 +19,28 @@ public class MonkeyFood implements Food {
 		return getNameByType(this.monkeyFoodType);
 	}
 	
+	public MonkeyFoodType getMonkeyFoodType() {
+		return this.monkeyFoodType;
+	}
+	
+	@Override
+	public boolean isSameType(Food food) {
+		if (food == null || !(food instanceof MonkeyFood)) {
+			return false;
+		}
+		MonkeyFood thatFood = (MonkeyFood) food;
+		boolean result = thatFood.getMonkeyFoodType() == this.getMonkeyFoodType();
+		return result;
+	}
+	
+	public void addAmount(Food food) {
+		if (isSameType(food)) {
+			this.amount += food.getFoodAmount();
+		} else {
+			throw new IllegalArgumentException("Food Type unmatched\n");
+		}
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder sBuilder = new StringBuilder();
@@ -28,5 +50,6 @@ public class MonkeyFood implements Food {
 		sBuilder.append("\n");
 		return sBuilder.toString();
 	}
+	
 
 }

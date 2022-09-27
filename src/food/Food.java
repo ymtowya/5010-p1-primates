@@ -18,4 +18,6 @@ public interface Food {
 	 * @return the name of food
 	 */
 	String getFoodName(); 
+	
+	boolean isSameType(Food food);
 }

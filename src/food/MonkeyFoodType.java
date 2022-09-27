@@ -7,5 +7,6 @@ public enum MonkeyFoodType {
 	LEAVES,
 	NUTS,
 	SEEDS,
-	TREE_SAP
+	TREE_SAP,
+	UNKNOWN;
 }
