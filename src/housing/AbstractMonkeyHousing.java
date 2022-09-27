@@ -1,6 +1,10 @@
 package housing;
 
+import java.util.List;
+import java.util.Map;
+
 import animal.Animal;
+import food.Food;
 
 /**
  * This class.
@@ -22,4 +26,21 @@ public abstract class AbstractMonkeyHousing implements Housing {
 	 */
 	public abstract boolean hasSpecies(Animal animal);
 
+	public abstract int getCapacity();
+	
+	public int getAmount() {
+		return this.monkeyTotalAmount;
+	}
+	
+	public abstract boolean hasRoom(Animal animal);
+	
+	public abstract boolean sendOut(Animal animal);
+	
+	public abstract boolean receive(Animal animal);
+	
+	public abstract Map<String, Object> getDetail();
+	
+	public abstract Map<String, Object> lookUp(Animal animal);
+	
+	public abstract List<Food> getFoodList();
 }

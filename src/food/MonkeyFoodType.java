@@ -1,6 +1,6 @@
 package food;
 
-public enum FoodType {
+public enum MonkeyFoodType {
 	EGGS,
 	FRUITS,
 	INSECTS,
