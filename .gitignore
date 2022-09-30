@@ -33,3 +33,15 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/bin/
+
+# macos config
+../idea/
+../lab00-getting-started/.idea/vcs.xml
+../lab00-getting-started/.idea/workspace.xml
+../lab01-stevenson/.idea/vcs.xml
+../lab01-stevenson/.idea/workspace.xml
+../lab03-model/
+../peg/
+../lab00-getting-started/.idea/.gitignore
+../lab01-stevenson/.idea/.gitignore
