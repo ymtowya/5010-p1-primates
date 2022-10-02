@@ -140,5 +140,13 @@ public class Monkey implements Animal, Comparable<Monkey> {
 		return food;
 	}
 	
+	public void receiveMedicine() {
+		this.hasReceivedMed = true;
+	}
+	
+	public Monkey getCopyOf(Monkey srcMonkey) {
+		// TODO: copy deep
+		return null;
+	}
 
 }

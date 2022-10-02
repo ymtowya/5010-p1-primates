@@ -30,11 +30,7 @@ public abstract class AbstractMonkeyHousing implements Housing {
 		return this.getAmount() == this.getCapacity();
 	}
 	
-	/**
-	 * This function checks if the housing contains animal of the same species as the input animal.
-	 * @param animal to be checked if same species are contained
-	 * @return True of False for weather same species animal are living in the housing
-	 */
+	@Override
 	public abstract boolean hasSpecies(Animal animal);
 
 	public int getCapacity() {
@@ -49,15 +45,21 @@ public abstract class AbstractMonkeyHousing implements Housing {
 	
 	abstract void updateCapacity(Animal animal);
 	
+	@Override
 	public abstract boolean hasRoom(Animal animal);
 	
+	@Override
 	public abstract int sendOut(Animal animal);
 	
+	@Override
 	public abstract int receive(Animal animal);
 	
+	@Override
 	public abstract Map<String, Object> getDetail();
 	
+	@Override
 	public abstract Map<String, Object> lookUp(Animal animal);
 	
+	@Override
 	public abstract List<Food> getFoodList();
 }
