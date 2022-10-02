@@ -1,10 +1,8 @@
 package housing;
 
-import java.util.List;
 import java.util.Map;
 
 import animal.Animal;
-import food.Food;
 
 /**
  * This interface provides general functions for housing-related classes.
@@ -37,7 +35,5 @@ public interface Housing {
 	Map<String, Object> getDetail();
 	
 	Map<String, Object> lookUp(Animal animal);
-	
-	List<Food> getFoodList();
 
 }

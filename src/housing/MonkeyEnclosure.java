@@ -8,7 +8,6 @@ import java.util.Map;
 import animal.Animal;
 import animal.Monkey;
 import animal.MonkeySize;
-import food.Food;
 import food.MonkeyFood;
 
 public class MonkeyEnclosure extends AbstractMonkeyHousing {
@@ -118,12 +117,12 @@ public class MonkeyEnclosure extends AbstractMonkeyHousing {
 	}
 
 	@Override
-	public List<Food> getFoodList() {
+	public List<MonkeyFood> getFoodList() {
 		List<MonkeyFood> foodList = new ArrayList<MonkeyFood>();
 		for (Monkey monkey : residentMonkeys) {
 			foodList.add(monkey.getFavouriteFood());
 		}
-		List<Food> resList = MonkeyFood.getMergedFoodList(foodList);
+		List<MonkeyFood> resList = MonkeyFood.getMergedFoodList(foodList);
 		return resList;
 	}
 
@@ -135,6 +134,7 @@ public class MonkeyEnclosure extends AbstractMonkeyHousing {
 		return residentMonkeys.size();
 	}
 	
+	@Override
 	public int getId() {
 		return id;
 	}

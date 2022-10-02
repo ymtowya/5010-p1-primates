@@ -7,7 +7,7 @@ import java.util.Map;
 
 import animal.Animal;
 import animal.Monkey;
-import food.Food;
+import food.MonkeyFood;
 
 public class MonkeyIsolation extends AbstractMonkeyHousing {
 	
@@ -87,8 +87,8 @@ public class MonkeyIsolation extends AbstractMonkeyHousing {
 	}
 
 	@Override
-	public List<Food> getFoodList() {
-		List<Food> foodList = new ArrayList<Food>();
+	public List<MonkeyFood> getFoodList() {
+		List<MonkeyFood> foodList = new ArrayList<MonkeyFood>();
 		if (!isEmpty()) {
 			foodList.add(residentMonkey.getFavouriteFood());
 		}
@@ -98,6 +98,7 @@ public class MonkeyIsolation extends AbstractMonkeyHousing {
 	/**
 	 * @return the id
 	 */
+	@Override
 	public int getId() {
 		return id;
 	}

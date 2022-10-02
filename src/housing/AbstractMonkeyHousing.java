@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import animal.Animal;
-import food.Food;
+import food.MonkeyFood;
 
 /**
  * This class.
@@ -16,9 +16,18 @@ public abstract class AbstractMonkeyHousing implements Housing {
 	public static final String LOOKUP_MAP_KEY_HOUSEID = "housingId";
 	public static final String LOOKUP_MAP_KEY_UNITID = "unitId";
 	public static final String LOOKUP_MAP_KEY_MONKEYID = "monkeyId";
+	
+	public static final String LOOKUP_MAP_KEY_IDS = "housingIds";
+	public static final String LOOKUP_MAP_KEY_AMOUNTS = "monkeyAmounts";
+	public static final String LOOKUP_MAP_KEY_HOUSES = "monkeyHouses";
+	public static final String LOOKUP_MAP_KEY_DETAILS = "details";
+	public static final String LOOKUP_MAP_KEY_HTYPE = "htypes";
+	
 	public static final int LOOKUP_MAP_VAL_NOT_FOUND = -1;
 	
 	private int monkeyCapacity;
+	
+	abstract int getId();
 
 	@Override
 	public boolean isEmpty() {
@@ -59,7 +68,6 @@ public abstract class AbstractMonkeyHousing implements Housing {
 	
 	@Override
 	public abstract Map<String, Object> lookUp(Animal animal);
-	
-	@Override
-	public abstract List<Food> getFoodList();
+
+	public abstract List<MonkeyFood> getFoodList();
 }

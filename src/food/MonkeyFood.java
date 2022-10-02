@@ -11,7 +11,7 @@ public class MonkeyFood implements Food {
 	private int amount;
 	private MonkeyFoodType monkeyFoodType;
 	
-	public static List<Food> getMergedFoodList(List<MonkeyFood> foodList) {
+	public static List<MonkeyFood> getMergedFoodList(List<MonkeyFood> foodList) {
 		Map<MonkeyFoodType, Integer> foodMap = new HashMap<MonkeyFoodType, Integer>();
 		Iterator<MonkeyFood> foodIterator = foodList.iterator();
 		while (foodIterator.hasNext()) {
@@ -24,7 +24,7 @@ public class MonkeyFood implements Food {
 			Integer curAmount = monkeyFood.getFoodAmount();
 			foodMap.put(foodType, preAmount + curAmount);
 		}
-		List<Food> resList = new ArrayList<Food>();
+		List<MonkeyFood> resList = new ArrayList<MonkeyFood>();
 		for (MonkeyFoodType type : foodMap.keySet()) {
 			int amount = foodMap.get(type).intValue();
 			MonkeyFood monkeyFood = new MonkeyFood(type, amount);
