@@ -37,6 +37,7 @@ public class MonkeyEnclosure extends AbstractMonkeyHousing {
     this.area = initArea;
     this.id = getUniqueId();
     residentMonkeys = new ArrayList<Monkey>();
+    setCapacity(1);
   }
 
   /**
@@ -46,6 +47,7 @@ public class MonkeyEnclosure extends AbstractMonkeyHousing {
     this.area = 100;
     this.id = getUniqueId();
     residentMonkeys = new ArrayList<Monkey>();
+    setCapacity(1);
   }
 
   @Override
@@ -94,6 +96,7 @@ public class MonkeyEnclosure extends AbstractMonkeyHousing {
       int unitId = (int) resMap.get(LOOKUP_MAP_KEY_UNITID);
       residentMonkeys.remove(unitId);
       resultId = getId();
+      updateCapacity(animal);
     }
     return resultId;
   }
@@ -105,6 +108,7 @@ public class MonkeyEnclosure extends AbstractMonkeyHousing {
       Monkey thatMonkey = (Monkey) animal;
       residentMonkeys.add(thatMonkey);
       resultId = getId();
+      updateCapacity(animal);
     }
     return resultId;
   }

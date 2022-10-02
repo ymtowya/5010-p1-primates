@@ -252,9 +252,11 @@ public class MonkeySanctuary implements Housing {
     if (thatMonkey.isHasReceivedMed()) {
       Map<String, Object> resMap1 = lookUpGeneral(thatMonkey, HousingType.ISO);
       Map<String, Object> resMap2 = hasRoomGeneral(thatMonkey, HousingType.ENC);
+      // System.out.println((boolean) resMap2.get(AbstractMonkeyHousing.LOOKUP_MAP_KEY_FOUND));
       if ((boolean) resMap1.get(AbstractMonkeyHousing.LOOKUP_MAP_KEY_FOUND)
           && (boolean) resMap2.get(AbstractMonkeyHousing.LOOKUP_MAP_KEY_FOUND)) {
         sendOutGeneral(thatMonkey, HousingType.ISO);
+        
         res = receiveGeneral(thatMonkey, HousingType.ENC);
       }
     }

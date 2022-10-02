@@ -9,7 +9,32 @@ Favourite Food: INSECTS
 Move the Dollie to the isolation:
 Now the Dollie is in the sanctuary.
 Now look up for Dollie: 
-{found=false, details=[]}
+{found=false, details=[{monkeyId=1, htypes=ISO, found=true, housingId=1, unitId=1}]}
 Now give Dollie the medical assessment: 
 Now Dollie's condition is : true
 And we move it to the Enclosure
+Monkey - No.2
+Name: Dollie
+Species: GUEREZA
+Sex: FEMALE
+Size: LARGE
+Favourite Food: INSECTS
+
+Now we have a new Monkey!
+Monkey - No.3
+Name: Poyu
+Species: HOWLER
+Sex: MALE
+Size: MEDIUM
+Favourite Food: NUTS
+It's clean, will go to enclosure
+Monkey - No.4
+Name: Poyu
+Species: HOWLER
+Sex: MALE
+Size: MEDIUM
+Favourite Food: NUTS
+All done. Get the Food List:
+[INSECTS : 500
+, NUTS : 300
+]

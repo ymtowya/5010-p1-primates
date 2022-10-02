@@ -39,7 +39,7 @@ public class MonkeyIsolation extends AbstractMonkeyHousing {
     if (animal == null || this.isEmpty() || !(animal instanceof Monkey)) {
       return false;
     }
-    // System.out.println("HELLO");
+    
     Monkey thatMonkey = (Monkey) animal;
     return thatMonkey.getMonkeyType() == this.residentMonkey.getMonkeyType();
   }
@@ -49,7 +49,7 @@ public class MonkeyIsolation extends AbstractMonkeyHousing {
     if (animal == null || !(animal instanceof Monkey)) {
       return false;
     }
-    return !isEmpty();
+    return isEmpty();
   }
 
   @Override
@@ -85,7 +85,6 @@ public class MonkeyIsolation extends AbstractMonkeyHousing {
   public Map<String, Object> lookUp(Animal animal) {
     Map<String, Object> resultMap = new HashMap<>();
     boolean foundFlag = false;
-    // System.out.println(hasSpecies((Monkey) animal));
     if (hasSpecies((Monkey) animal) && residentMonkey.compareByAllAttrExceptId((Monkey) animal)) {
       foundFlag = true;
       resultMap.put(LOOKUP_MAP_KEY_HOUSEID, this.getId());

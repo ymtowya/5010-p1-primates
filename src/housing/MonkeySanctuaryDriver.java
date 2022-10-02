@@ -47,9 +47,17 @@ public class MonkeySanctuaryDriver {
     writer.write("\nAnd we move it to the Enclosure\n");
     int i = 0;
     i = monkeySanctuary.moveHealthyMonkey(dollie);
-    System.out.println(i);
+    // System.out.println(i);
     writer.write(monkeySanctuary.getEnclosureString(i));
-    
+    Monkey poyu = new Monkey(MonkeyType.HOWLER, "Poyu", 12.2, AnimalSex.MALE, 7, MonkeyFoodType.NUTS);
+    writer.write("\nNow we have a new Monkey!\n");
+    writer.write(poyu.toString());
+    poyu.receiveMedicine();
+    writer.write("It's clean, will go to enclosure\n");
+    i = monkeySanctuary.receive(poyu);
+    writer.write(monkeySanctuary.getEnclosureString(i));
+    writer.write("All done. Get the Food List:\n");
+    writer.write(monkeySanctuary.getFoodList().toString());
   }
 
   /**
