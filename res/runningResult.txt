@@ -1,0 +1,15 @@
+Initializing the Sanctuary:
+Initializing the Monkey Dollie:
+Monkey - No.1
+Name: Dollie
+Species: GUEREZA
+Sex: FEMALE
+Size: LARGE
+Favourite Food: INSECTS
+Move the Dollie to the isolation:
+Now the Dollie is in the sanctuary.
+Now look up for Dollie: 
+{found=false, details=[]}
+Now give Dollie the medical assessment: 
+Now Dollie's condition is : true
+And we move it to the Enclosure

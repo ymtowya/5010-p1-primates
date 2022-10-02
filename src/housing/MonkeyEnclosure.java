@@ -30,6 +30,13 @@ public class MonkeyEnclosure extends AbstractMonkeyHousing {
 		residentMonkeys = new ArrayList<Monkey>();
 	}
 	
+	public MonkeyEnclosure() {
+		this.area = 100;
+		this.id = getUniqueId();
+		residentMonkeys = new ArrayList<Monkey>();
+	}
+
+	
 	@Override
 	public boolean hasSpecies(Animal animal) {
 		if (animal == null || !(animal instanceof Monkey) || isEmpty()) {
