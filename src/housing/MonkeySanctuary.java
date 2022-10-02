@@ -1,17 +1,24 @@
 package housing;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import animal.Animal;
 import animal.Monkey;
+import animal.MonkeyType;
 import food.MonkeyFood;
+
 
 public class MonkeySanctuary implements Housing{
 	
 	public static enum HousingType {ISO, ENC};
+	public static final String SPECIESORDER_STRING = "SPECIESORDER";
+	public static final String SPECIESDETAIL_STRING = "SPECIESDETAILS";
 	
 	private static int uniqueIdSeries = 1;
 
@@ -212,11 +219,22 @@ public class MonkeySanctuary implements Housing{
 		}
 		return res;
 	}
+	
+	private List<String> getDetailHelper() {
+		List<String> resList = new ArrayList<>();
+		for (AbstractMonkeyHousing housing : monkeyIsolations) {
+			resList.addAll(housing.getDetail());
+		}
+		for (AbstractMonkeyHousing housing : monkeyEnclosures) {
+			resList.addAll(housing.getDetail());
+		}
+		Collections.sort(resList);
+		return resList;
+	}
 
 	@Override
-	public Map<String, Object> getDetail() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<String> getDetail() {
+		return getDetailHelper();
 	}
 
 	private Map<String, Object> lookUpGeneral(Animal animal, HousingType housingType) {
@@ -313,6 +331,57 @@ public class MonkeySanctuary implements Housing{
 			return true;
 		}
 		return false;
+	}
+	
+	public Map<String, String> reportAllSpeciesGeneral(HousingType housingType) {
+		List<AbstractMonkeyHousing> housings = getHousingList(housingType);
+		Map<String, String> resMap = new HashMap<>();
+		for (AbstractMonkeyHousing housing : housings) {
+			Map<String, Integer> tmpCount = housing.reportAllSpecies();
+			for (String keyString : tmpCount.keySet()) {
+				if (resMap.containsKey(keyString)) {
+					String tmpString = resMap.get(keyString) + " " + tmpCount.get(keyString).toString();
+					resMap.put(keyString, tmpString);
+				} else {
+					resMap.put(keyString, tmpCount.get(keyString).toString());
+				}
+			}
+		}
+		return resMap;
+	}
+
+	public Map<String, Object> reportAllSpecies() {
+		Map<String, String> resMap1 = reportAllSpeciesGeneral(HousingType.ISO);
+		Map<String, String> resMap2 = reportAllSpeciesGeneral(HousingType.ENC);
+		
+		Map<String, Object> resMap = new HashMap<>();
+		
+		Set<String> typeStringSet = resMap1.keySet();
+		typeStringSet.addAll(resMap2.keySet());
+		List<String> typeStringList = new ArrayList<String>();
+		typeStringList.addAll(typeStringSet);
+		
+		Map<String, String> sumMap = new HashMap<String, String>();
+		for (String typeString : typeStringSet) {
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.append(typeString)
+				.append(" : \n");
+			if (resMap1.containsKey(typeString)) {
+				stringBuilder.append("Isolation : ")
+					.append(resMap1.get(typeString))
+					.append("\n");
+			}
+			if (resMap2.containsKey(typeString)) {
+				stringBuilder.append("Enclosure : ")
+					.append(resMap2.get(typeString))
+					.append("\n");
+			}
+			sumMap.put(typeString, stringBuilder.toString());
+		}
+		
+		resMap.put(SPECIESORDER_STRING, typeStringList);
+		resMap.put(SPECIESDETAIL_STRING, sumMap);
+		return null;
 	}
 
 }

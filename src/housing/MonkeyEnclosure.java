@@ -1,6 +1,7 @@
 package housing;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import java.util.Map;
 import animal.Animal;
 import animal.Monkey;
 import animal.MonkeySize;
+import animal.SortMonkeyByName;
 import food.MonkeyFood;
 
 public class MonkeyEnclosure extends AbstractMonkeyHousing {
@@ -90,9 +92,14 @@ public class MonkeyEnclosure extends AbstractMonkeyHousing {
 	}
 
 	@Override
-	public Map<String, Object> getDetail() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<String> getDetail() {
+		List<String> resList = new ArrayList<>();
+		for (Monkey monkey : residentMonkeys) {
+			resList.add(monkey.getName().concat(" - residing in Enclosure - ")
+						.concat(String.valueOf(getId()))
+						.concat("\n"));
+		}
+		return resList;
 	}
 
 	@Override
@@ -137,6 +144,26 @@ public class MonkeyEnclosure extends AbstractMonkeyHousing {
 	@Override
 	public int getId() {
 		return id;
+	}
+
+	@Override
+	public Map<String, Integer> reportAllSpecies() {
+		if (isEmpty()) {
+			return null;
+		}
+		Map<String, Integer> resMap = new HashMap<>();
+		resMap.put(residentMonkeys.get(0).getMonkeyType().name(), getId());
+		return resMap;
+	}
+
+	@Override
+	public List<Monkey> getAllMonkeys() {
+		List<Monkey> resList = new ArrayList<>();
+		for (Monkey monkey : residentMonkeys) {
+			resList.add(monkey.getCopy());
+		}
+		Collections.sort(resList, new SortMonkeyByName());
+		return resList;
 	}
 
 }

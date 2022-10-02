@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import animal.Animal;
+import animal.Monkey;
 import food.MonkeyFood;
 
 /**
@@ -64,10 +65,15 @@ public abstract class AbstractMonkeyHousing implements Housing {
 	public abstract int receive(Animal animal);
 	
 	@Override
-	public abstract Map<String, Object> getDetail();
+	public abstract List<String> getDetail();
 	
 	@Override
 	public abstract Map<String, Object> lookUp(Animal animal);
+	
+	public abstract Map<String, Integer> reportAllSpecies();
 
 	public abstract List<MonkeyFood> getFoodList();
+	
+	public abstract List<Monkey> getAllMonkeys();
+
 }

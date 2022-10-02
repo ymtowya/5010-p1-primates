@@ -48,7 +48,6 @@ public class MonkeyIsolation extends AbstractMonkeyHousing {
 		int resultId = LOOKUP_MAP_VAL_NOT_FOUND;
 		Map<String, Object> resMap = lookUp(animal);
 		if ((boolean) resMap.get(LOOKUP_MAP_KEY_FOUND)) {
-			// int unitId = (int) resMap.get(LOOKUP_MAP_KEY_UNITID);
 			this.residentMonkey = null;
 			resultId = getId();
 		}
@@ -66,9 +65,12 @@ public class MonkeyIsolation extends AbstractMonkeyHousing {
 	}
 
 	@Override
-	public Map<String, Object> getDetail() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<String> getDetail() {
+		List<String> resList = new ArrayList<>();
+		resList.add(residentMonkey.getName().concat(" - residing in Isolation - ")
+					.concat(String.valueOf(getId()))
+					.concat("\n"));
+		return resList;
 	}
 
 	@Override
@@ -115,6 +117,23 @@ public class MonkeyIsolation extends AbstractMonkeyHousing {
 	@Override
 	public int getAmount() {
 		return (residentMonkey == null) ? 0 : 1;
+	}
+
+	@Override
+	public Map<String, Integer> reportAllSpecies() {
+		if (isEmpty()) {
+			return null;
+		}
+		Map<String, Integer> resMap = new HashMap<>();
+		resMap.put(residentMonkey.getMonkeyType().name(), getId());
+		return resMap;
+	}
+
+	@Override
+	public List<Monkey> getAllMonkeys() {
+		List<Monkey> resList = new ArrayList<>();
+		resList.add(residentMonkey.getCopy());
+		return resList;
 	}
 
 }

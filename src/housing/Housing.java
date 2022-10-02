@@ -1,5 +1,6 @@
 package housing;
 
+import java.util.List;
 import java.util.Map;
 
 import animal.Animal;
@@ -32,7 +33,7 @@ public interface Housing {
 	
 	int receive(Animal animal);
 	
-	Map<String, Object> getDetail();
+	List<String> getDetail();
 	
 	Map<String, Object> lookUp(Animal animal);
 

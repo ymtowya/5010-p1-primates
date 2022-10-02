@@ -3,12 +3,12 @@ package animal;
 import food.MonkeyFood;
 import food.MonkeyFoodType;
 
-public class Monkey implements Animal, Comparable<Monkey> {
+public class Monkey implements Animal {
 
 	private final String name;
 	private double weight;
 	private int age;
-	private AnimalSex monkeySex;
+	private final AnimalSex monkeySex;
 	private MonkeySize monkeySize;
 	private MonkeyFoodType favouriteFoodType;
 	private final int id;
@@ -20,11 +20,17 @@ public class Monkey implements Animal, Comparable<Monkey> {
 		return Monkey.uniqueIdSeries++;
 	}
 
-	public Monkey(MonkeyType monkeyType, String monkeyName) {
-		this.name = monkeyName;
-		this.monkeyType = monkeyType;
-		this.hasReceivedMed = false;
+	public Monkey(MonkeyType inputType, String inputName,
+			double inputWeight, AnimalSex inputSex,
+			int inputAge, MonkeyFoodType inputFoodType) {
 		this.id = getUniqueId();
+		this.name = inputName;
+		this.monkeyType = inputType;
+		this.weight = inputWeight;
+		this.hasReceivedMed = false;
+		this.monkeySex = inputSex;
+		this.favouriteFoodType = inputFoodType;
+		this.monkeySize = MonkeySize.getSizeByWeight(inputWeight);
 	}
 
 	@Override
@@ -55,14 +61,6 @@ public class Monkey implements Animal, Comparable<Monkey> {
 				&& monkey.getMonkeySex() == getMonkeySex()
 				&& monkey.getFavouriteFoodType() == getFavouriteFoodType();
 	}
-	
-	@Override
-	public int compareTo(Monkey monkey) {
-		if (monkey == null) {
-			return 1;
-		}
-		return this.getName().compareTo(monkey.getName());
-	}
 
 	@Override
 	public int hashCode() {
@@ -83,7 +81,6 @@ public class Monkey implements Animal, Comparable<Monkey> {
 			.append("\nSpecies: ").append(getMonkeyType().name())
 			.append("\nSex: ").append(getMonkeySex().name())
 			.append("\nSize: ").append(getMonkeySize().name())
-			.append("\nMedical Reception: ").append(isHasReceivedMed() ? "Y" : "N")
 			.append("\nFavourite Food: ").append(getFavouriteFoodType().name())
 			.append("\n");
 		return stringBuilder.toString();
@@ -144,9 +141,10 @@ public class Monkey implements Animal, Comparable<Monkey> {
 		this.hasReceivedMed = true;
 	}
 	
-	public Monkey getCopyOf(Monkey srcMonkey) {
-		// TODO: copy deep
-		return null;
+	public Monkey getCopy() {
+		return new Monkey(getMonkeyType(), getName(),
+				getWeight(), getMonkeySex(),
+				getAge(), getFavouriteFoodType());
 	}
 
 }
