@@ -12,11 +12,22 @@ import food.Food;
  */
 public abstract class AbstractMonkeyHousing implements Housing {
 	
-	private int monkeyTotalAmount;
+	public static final String LOOKUP_MAP_KEY_FOUND = "found";
+	public static final String LOOKUP_MAP_KEY_HOUSEID = "housingId";
+	public static final String LOOKUP_MAP_KEY_UNITID = "unitId";
+	public static final String LOOKUP_MAP_KEY_MONKEYID = "monkeyId";
+	public static final int LOOKUP_MAP_VAL_NOT_FOUND = -1;
+	
+	private int monkeyCapacity;
 
 	@Override
 	public boolean isEmpty() {
-		return this.monkeyTotalAmount == 0;
+		return this.getAmount() == 0;
+	}
+	
+	@Override
+	public boolean isFull() {
+		return this.getAmount() == this.getCapacity();
 	}
 	
 	/**
@@ -26,17 +37,23 @@ public abstract class AbstractMonkeyHousing implements Housing {
 	 */
 	public abstract boolean hasSpecies(Animal animal);
 
-	public abstract int getCapacity();
-	
-	public int getAmount() {
-		return this.monkeyTotalAmount;
+	public int getCapacity() {
+		return this.monkeyCapacity;
 	}
+	
+	public abstract int getAmount();
+	
+	void setCapacity(int newCapacity) {
+		this.monkeyCapacity = newCapacity;
+	}
+	
+	abstract void updateCapacity(Animal animal);
 	
 	public abstract boolean hasRoom(Animal animal);
 	
-	public abstract boolean sendOut(Animal animal);
+	public abstract int sendOut(Animal animal);
 	
-	public abstract boolean receive(Animal animal);
+	public abstract int receive(Animal animal);
 	
 	public abstract Map<String, Object> getDetail();
 	

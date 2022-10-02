@@ -10,5 +10,10 @@ public interface Housing {
 	 * @return True for empty housing, False for non-empty one.
 	 */
 	boolean isEmpty();
+	/**
+	 * This function checks if the housing is full or not.
+	 * @return True for empty housing, False for not yet full one.
+	 */
+	boolean isFull();
 
 }

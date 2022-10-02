@@ -1,5 +1,6 @@
 package animal;
 
+import food.MonkeyFood;
 import food.MonkeyFoodType;
 
 public class Monkey implements Animal, Comparable<Monkey> {
@@ -36,18 +37,30 @@ public class Monkey implements Animal, Comparable<Monkey> {
 	}
 
 	public boolean compareByName(Monkey monkey) {
+		if (monkey == null) {
+			return false;
+		}
 		return monkey.getName().equals(getName());
 	}
 
-	public boolean compareByNameTypeWeightAge(Monkey monkey) {
+	public boolean compareByAllAttrExceptId(Monkey monkey) {
+		if (monkey == null) {
+			return false;
+		}
 		return monkey.getName().equals(getName())
 				&& monkey.getMonkeyType() == getMonkeyType()
 				&& monkey.getWeight() == getWeight()
-				&& monkey.getAge() == getAge();
+				&& monkey.getAge() == getAge()
+				&& monkey.getMonkeySize() == getMonkeySize()
+				&& monkey.getMonkeySex() == getMonkeySex()
+				&& monkey.getFavouriteFoodType() == getFavouriteFoodType();
 	}
 	
 	@Override
 	public int compareTo(Monkey monkey) {
+		if (monkey == null) {
+			return 1;
+		}
 		return this.getName().compareTo(monkey.getName());
 	}
 
@@ -121,6 +134,11 @@ public class Monkey implements Animal, Comparable<Monkey> {
 		return favouriteFoodType;
 	}
 	
+	public MonkeyFood getFavouriteFood() {
+		MonkeyFood food = new MonkeyFood(getFavouriteFoodType(),
+				MonkeySize.getFoodAmountBySize(getMonkeySize()));
+		return food;
+	}
 	
 
 }

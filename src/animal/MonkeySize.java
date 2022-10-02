@@ -19,7 +19,7 @@ public enum MonkeySize {
 	}
 	
 	public static double getAreaBySize(MonkeySize s) {
-		double area = 1;
+		double area = 10;
 		switch (s) {
 			case SMALL:
 				area = 2;

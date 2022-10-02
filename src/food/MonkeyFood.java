@@ -1,9 +1,42 @@
 package food;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 public class MonkeyFood implements Food {
 	
 	private int amount;
 	private MonkeyFoodType monkeyFoodType;
+	
+	public static List<Food> getMergedFoodList(List<MonkeyFood> foodList) {
+		Map<MonkeyFoodType, Integer> foodMap = new HashMap<MonkeyFoodType, Integer>();
+		Iterator<MonkeyFood> foodIterator = foodList.iterator();
+		while (foodIterator.hasNext()) {
+			MonkeyFood monkeyFood = foodIterator.next();
+			MonkeyFoodType foodType = monkeyFood.getMonkeyFoodType();
+			Integer preAmount = foodMap.get(foodType);
+			if (preAmount == null) {
+				preAmount = 0;
+			}
+			Integer curAmount = monkeyFood.getFoodAmount();
+			foodMap.put(foodType, preAmount + curAmount);
+		}
+		List<Food> resList = new ArrayList<Food>();
+		for (MonkeyFoodType type : foodMap.keySet()) {
+			int amount = foodMap.get(type).intValue();
+			MonkeyFood monkeyFood = new MonkeyFood(type, amount);
+			resList.add(monkeyFood);
+		}
+		return resList;
+	}
+	
+	public MonkeyFood(MonkeyFoodType thisFoodType, int thisAmount) {
+		this.monkeyFoodType = thisFoodType;
+		this.amount = thisAmount;
+	}
 	
 	private static String getNameByType(MonkeyFoodType mFoodType) {
 		return mFoodType.name();
