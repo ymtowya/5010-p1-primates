@@ -16,13 +16,9 @@ import java.util.Map;
 public class MonkeyIsolation extends AbstractMonkeyHousing {
 
   private static int uniqueIdSeries = 1;
-
-  private static int getUniqueId() {
-    return MonkeyIsolation.uniqueIdSeries++;
-  }
-
-  private Monkey residentMonkey;
   private final int id;
+  private Monkey residentMonkey;
+  
 
   /**
    * Constructor for the monkey's isolation.
@@ -32,6 +28,10 @@ public class MonkeyIsolation extends AbstractMonkeyHousing {
     this.id = getUniqueId();
     this.updateCapacity(null);
     residentMonkey = null;
+  }
+  
+  private static int getUniqueId() {
+    return MonkeyIsolation.uniqueIdSeries++;
   }
 
   @Override

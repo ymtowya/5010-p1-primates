@@ -30,15 +30,11 @@ public class MonkeySanctuary implements Housing {
   public static final String SPECIESDETAIL_STRING = "SPECIESDETAILS";
 
   private static int uniqueIdSeries = 1;
-
-  private static int getUniqueId() {
-    return MonkeySanctuary.uniqueIdSeries++;
-  }
-
+  
   private final int id;
 
-  List<AbstractMonkeyHousing> monkeyIsolations;
-  List<AbstractMonkeyHousing> monkeyEnclosures;
+  private List<AbstractMonkeyHousing> monkeyIsolations;
+  private List<AbstractMonkeyHousing> monkeyEnclosures;
 
   private int isolationCapacity;
   private int enclosureCapacity;
@@ -60,6 +56,10 @@ public class MonkeySanctuary implements Housing {
     for (int i = 0; i < encCapacity; ++i) {
       monkeyEnclosures.add(new MonkeyEnclosure());
     }
+  }
+  
+  private static int getUniqueId() {
+    return MonkeySanctuary.uniqueIdSeries++;
   }
 
   private MonkeyEnclosure getEnclosure(int id) {

@@ -19,14 +19,20 @@ public class MonkeyEnclosure extends AbstractMonkeyHousing {
 
   private static int uniqueIdSeries = 1;
 
-  private static int getUniqueId() {
-    return MonkeyEnclosure.uniqueIdSeries++;
-  }
-
   private final int id;
 
   private List<Monkey> residentMonkeys;
   private double area;
+
+  /**
+   * This is the constructor taking anonymously.
+   */
+  public MonkeyEnclosure() {
+    this.area = 100;
+    this.id = getUniqueId();
+    residentMonkeys = new ArrayList<Monkey>();
+    setCapacity(1);
+  }
 
   /**
    * This is the constructor, instantiating the class with areas.
@@ -39,15 +45,9 @@ public class MonkeyEnclosure extends AbstractMonkeyHousing {
     residentMonkeys = new ArrayList<Monkey>();
     setCapacity(1);
   }
-
-  /**
-   * This is the constructor taking anonymously.
-   */
-  public MonkeyEnclosure() {
-    this.area = 100;
-    this.id = getUniqueId();
-    residentMonkeys = new ArrayList<Monkey>();
-    setCapacity(1);
+  
+  private static int getUniqueId() {
+    return MonkeyEnclosure.uniqueIdSeries++;
   }
 
   @Override

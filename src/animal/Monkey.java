@@ -9,21 +9,17 @@ import food.MonkeyFoodType;
  */
 public class Monkey implements Animal {
 
+  private static int uniqueIdSeries = 1;
   private final String name;
+  private final AnimalSex monkeySex;
+  private final MonkeyType monkeyType;
+  private final int id;
   private double weight;
   private int age;
-  private final AnimalSex monkeySex;
   private MonkeySize monkeySize;
   private MonkeyFoodType favouriteFoodType;
-  private final int id;
   private boolean hasReceivedMed;
-  private final MonkeyType monkeyType;
-  private static int uniqueIdSeries = 1;
-
-  private static int getUniqueId() {
-    return Monkey.uniqueIdSeries++;
-  }
-
+  
   /**
    * Constructor.
    *
@@ -44,6 +40,10 @@ public class Monkey implements Animal {
     this.monkeySex = inputSex;
     this.favouriteFoodType = inputFoodType;
     this.monkeySize = MonkeySize.getSizeByWeight(inputWeight);
+  }
+
+  private static int getUniqueId() {
+    return Monkey.uniqueIdSeries++;
   }
 
   @Override

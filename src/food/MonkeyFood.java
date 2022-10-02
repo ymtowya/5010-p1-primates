@@ -16,6 +16,11 @@ public class MonkeyFood implements Food {
   private int amount;
   private MonkeyFoodType monkeyFoodType;
 
+  public MonkeyFood(MonkeyFoodType thisFoodType, int thisAmount) {
+    this.monkeyFoodType = thisFoodType;
+    this.amount = thisAmount;
+  }
+  
   /**
    * Merge 2 list of food to 1.
    *
@@ -42,11 +47,6 @@ public class MonkeyFood implements Food {
       resList.add(monkeyFood);
     }
     return resList;
-  }
-
-  public MonkeyFood(MonkeyFoodType thisFoodType, int thisAmount) {
-    this.monkeyFoodType = thisFoodType;
-    this.amount = thisAmount;
   }
 
   private static String getNameByType(MonkeyFoodType monFoodType) {

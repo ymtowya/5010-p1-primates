@@ -49,7 +49,9 @@ public class MonkeySanctuaryDriver {
     i = monkeySanctuary.moveHealthyMonkey(dollie);
     // System.out.println(i);
     writer.write(monkeySanctuary.getEnclosureString(i));
-    Monkey poyu = new Monkey(MonkeyType.HOWLER, "Poyu", 12.2, AnimalSex.MALE, 7, MonkeyFoodType.NUTS);
+    Monkey poyu = new Monkey(MonkeyType.HOWLER, "Poyu",
+        12.2, AnimalSex.MALE,
+        7, MonkeyFoodType.NUTS);
     writer.write("\nNow we have a new Monkey!\n");
     writer.write(poyu.toString());
     poyu.receiveMedicine();
