@@ -16,7 +16,16 @@ public class MonkeyFood implements Food {
   private int amount;
   private MonkeyFoodType monkeyFoodType;
 
+  /**
+   * Constructor.
+   * @param thisFoodType food type
+   * @param thisAmount food amount
+   * @throws Exception when negative amount
+   */
   public MonkeyFood(MonkeyFoodType thisFoodType, int thisAmount) {
+    if (thisAmount < 0) {
+      throw new IllegalArgumentException("Negative Amount");
+    }
     this.monkeyFoodType = thisFoodType;
     this.amount = thisAmount;
   }

@@ -31,7 +31,8 @@ public class MonkeySanctuaryDriver {
     }
     
     writer.write("Initializing the Sanctuary:\n");
-    monkeySanctuary = new MonkeySanctuary(10, 20);
+    int[] areas = new int[] {85, 100, 79, 97};
+    monkeySanctuary = new MonkeySanctuary(10, 4, areas);
     writer.write("Initializing the Monkey Dollie:\n");
     Monkey dollie = new Monkey(MonkeyType.GUEREZA, "Dollie", 24, AnimalSex.FEMALE, 10,
         MonkeyFoodType.INSECTS);

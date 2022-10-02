@@ -5,6 +5,7 @@ import animal.Monkey;
 import food.MonkeyFood;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,9 +45,16 @@ public class MonkeySanctuary implements Housing {
    *
    * @param isoCapacity isolation capacity
    * @param encCapacity enclosure capacity
+   * @param encAreas array of enclosure areas
+   * @throws IllegalArgumentException with length not match or negative capacity
    */
-  public MonkeySanctuary(int isoCapacity, int encCapacity) {
-    // TODO Auto-generated constructor stub
+  public MonkeySanctuary(int isoCapacity, int encCapacity, int[] encAreas) {
+    if (isoCapacity <= 0 || encCapacity <= 0) {
+      throw new IllegalArgumentException("negative capacity");
+    }
+    if (encAreas.length != encCapacity) {
+      throw new IllegalArgumentException("encAreas length does not match encCapacity");
+    }
     this.id = getUniqueId();
     monkeyIsolations = new ArrayList<AbstractMonkeyHousing>(isoCapacity);
     for (int i = 0; i < isoCapacity; ++i) {
@@ -54,8 +62,10 @@ public class MonkeySanctuary implements Housing {
     }
     monkeyEnclosures = new ArrayList<AbstractMonkeyHousing>(encCapacity);
     for (int i = 0; i < encCapacity; ++i) {
-      monkeyEnclosures.add(new MonkeyEnclosure());
+      monkeyEnclosures.add(new MonkeyEnclosure(encAreas[i]));
     }
+    this.isolationCapacity = isoCapacity;
+    this.enclosureCapacity = encCapacity;
   }
   
   private static int getUniqueId() {
@@ -116,7 +126,7 @@ public class MonkeySanctuary implements Housing {
 
   @Override
   public boolean isFull() {
-    return false;
+    return isIsolationFull() && isEnclosureFull();
   }
 
   private List<AbstractMonkeyHousing> getHousingList(HousingType housingType) {
@@ -126,7 +136,13 @@ public class MonkeySanctuary implements Housing {
     return this.monkeyEnclosures;
   }
 
-  private Map<String, Object> hasSpeciesGeneral(Animal animal, HousingType housingType) {
+  /**
+   * Report the certain Species.
+   * @param animal of species to be found
+   * @param housingType of where to find
+   * @return map of detailed info
+   */
+  public Map<String, Object> hasSpeciesGeneral(Animal animal, HousingType housingType) {
     Map<String, Object> resMap = new HashMap<>();
     boolean foundFlag = false;
     List<Integer> idList = new ArrayList<Integer>();
@@ -252,11 +268,9 @@ public class MonkeySanctuary implements Housing {
     if (thatMonkey.isHasReceivedMed()) {
       Map<String, Object> resMap1 = lookUpGeneral(thatMonkey, HousingType.ISO);
       Map<String, Object> resMap2 = hasRoomGeneral(thatMonkey, HousingType.ENC);
-      // System.out.println((boolean) resMap2.get(AbstractMonkeyHousing.LOOKUP_MAP_KEY_FOUND));
       if ((boolean) resMap1.get(AbstractMonkeyHousing.LOOKUP_MAP_KEY_FOUND)
           && (boolean) resMap2.get(AbstractMonkeyHousing.LOOKUP_MAP_KEY_FOUND)) {
         sendOutGeneral(thatMonkey, HousingType.ISO);
-        
         res = receiveGeneral(thatMonkey, HousingType.ENC);
       }
     }
@@ -266,10 +280,14 @@ public class MonkeySanctuary implements Housing {
   private List<String> getDetailHelper() {
     List<String> resList = new ArrayList<>();
     for (AbstractMonkeyHousing housing : monkeyIsolations) {
-      resList.addAll(housing.getDetail());
+      if (!housing.isEmpty()) {
+        resList.addAll(housing.getDetail());
+      }
     }
     for (AbstractMonkeyHousing housing : monkeyEnclosures) {
-      resList.addAll(housing.getDetail());
+      if (!housing.isEmpty()) {
+        resList.addAll(housing.getDetail());
+      }
     }
     Collections.sort(resList);
     return resList;
@@ -334,7 +352,14 @@ public class MonkeySanctuary implements Housing {
   public List<MonkeyFood> getFoodList() {
     List<MonkeyFood> foodList1 = getFavouriteFoodGeneral(HousingType.ISO);
     foodList1.addAll(getFavouriteFoodGeneral(HousingType.ENC));
-    return MonkeyFood.getMergedFoodList(foodList1);
+    List<MonkeyFood> resList = MonkeyFood.getMergedFoodList(foodList1);
+    Collections.sort(resList, new Comparator<MonkeyFood>() {
+      @Override
+      public int compare(MonkeyFood o1, MonkeyFood o2) {
+        return o1.getFoodName().compareTo(o2.getFoodName());
+      }
+    });
+    return resList;
   }
 
   public boolean isIsolationEmpty() {
@@ -354,7 +379,13 @@ public class MonkeySanctuary implements Housing {
     if (monkeyIsolations == null) {
       return 0;
     }
-    return monkeyIsolations.size();
+    int amount = 0;
+    for (AbstractMonkeyHousing housing : monkeyIsolations) {
+      if (!housing.isEmpty()) {
+        ++amount;
+      }
+    }
+    return amount;
   }
 
   public boolean isEnclosureEmpty() {
@@ -374,7 +405,13 @@ public class MonkeySanctuary implements Housing {
     if (monkeyEnclosures == null) {
       return 0;
     }
-    return monkeyEnclosures.size();
+    int amount = 0;
+    for (AbstractMonkeyHousing housing : monkeyEnclosures) {
+      if (!housing.isEmpty()) {
+        ++amount;
+      }
+    }
+    return amount;
   }
 
   /**
@@ -385,6 +422,9 @@ public class MonkeySanctuary implements Housing {
    */
   public boolean expandIsolation(int newCapacity) {
     if (newCapacity > this.getIsolationCapacity()) {
+      for (int i = this.getIsolationCapacity(); i < newCapacity; ++i) {
+        monkeyIsolations.add(new MonkeyIsolation());
+      }
       setIsolationCapacity(newCapacity);
       return true;
     }
@@ -395,10 +435,19 @@ public class MonkeySanctuary implements Housing {
    * expand the capacity of enclosure.
    *
    * @param newCapacity new capacity
+   * @param encAreas areas for new enclosure
    * @return true if success
+   * @throws IllegalArgument if length not match
    */
-  public boolean expandEnclosure(int newCapacity) {
+  public boolean expandEnclosure(int newCapacity, int[] encAreas) {
     if (newCapacity > this.getEnclosureCapacity()) {
+      if (encAreas.length != newCapacity - this.getEnclosureCapacity()) {
+        throw new IllegalArgumentException("Unmatched length");
+      }
+      final int preCapacity = this.getEnclosureCapacity();
+      for (int i = preCapacity; i < newCapacity; ++i) {
+        monkeyEnclosures.add(new MonkeyEnclosure(encAreas[i - preCapacity]));
+      }
       setEnclosureCapacity(newCapacity);
       return true;
     }

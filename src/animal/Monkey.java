@@ -32,10 +32,14 @@ public class Monkey implements Animal {
    */
   public Monkey(MonkeyType inputType, String inputName, double inputWeight, AnimalSex inputSex,
       int inputAge, MonkeyFoodType inputFoodType) {
+    if (inputWeight <= 0 || inputAge < 0) {
+      throw new IllegalArgumentException("Negative Weight");
+    }
     this.id = getUniqueId();
     this.name = inputName;
     this.monkeyType = inputType;
     this.weight = inputWeight;
+    this.age = inputAge;
     this.hasReceivedMed = false;
     this.monkeySex = inputSex;
     this.favouriteFoodType = inputFoodType;
@@ -91,8 +95,10 @@ public class Monkey implements Animal {
 
   @Override
   public boolean equals(Object obj) {
-    // TODO Auto-generated method stub
-    return super.equals(obj);
+    if (obj == null || !(obj instanceof Monkey)) {
+      return false;
+    }
+    return compareByAllAttrExceptId((Monkey) obj);
   }
 
   @Override
