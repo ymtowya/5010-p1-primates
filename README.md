@@ -16,8 +16,11 @@ This is a model of a primate sanctuary, it needs to represent different kinds of
 
 ### How to run
 
-If you have JRE installed on your environment, double click the `./primates.jar` is fine enough.
-The output will be in ./res/runningResult.txt
+If you have JRE installed on your environment, double click the runnable jar`./res/jar/p1-primates-runnable.jar` is fine enough.<br/>
+Or in the terminal, put in command
+`java -jar ./res/jar/p1-primates-runnable.jar` <br />
+*Note*: Don't delete the `./res/jar/res` folder! It's critical.
+The output will be in `./res/jar/res/runningResult.txt`.
 
 ### Useage
 
