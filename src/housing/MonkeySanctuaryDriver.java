@@ -7,6 +7,7 @@ import food.MonkeyFoodType;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * Driver to test running the Monkey sanctuary.
@@ -30,6 +31,7 @@ public class MonkeySanctuaryDriver {
       e.printStackTrace();
     }
     
+    writer.write("\n---------START----------\n");
     writer.write("Initializing the Sanctuary:\n");
     int[] areas = new int[] {85, 100, 79, 97};
     monkeySanctuary = new MonkeySanctuary(10, 4, areas);
@@ -37,9 +39,11 @@ public class MonkeySanctuaryDriver {
     Monkey dollie = new Monkey(MonkeyType.GUEREZA, "Dollie", 24, AnimalSex.FEMALE, 10,
         MonkeyFoodType.INSECTS);
     writer.write(dollie.toString());
+    writer.write("\n-------------------\n");
     writer.write("Move the Dollie to the isolation:\n");
     monkeySanctuary.receive(dollie);
     writer.write("Now the Dollie is in the sanctuary.\n");
+    writer.write("\n-------------------\n");
     writer.write("Now look up for Dollie: \n");
     writer.write(monkeySanctuary.lookUp(dollie).toString().concat("\n"));
     writer.write("Now give Dollie the medical assessment: \n");
@@ -48,19 +52,35 @@ public class MonkeySanctuaryDriver {
     writer.write("\nAnd we move it to the Enclosure\n");
     int i = 0;
     i = monkeySanctuary.moveHealthyMonkey(dollie);
-    // System.out.println(i);
     writer.write(monkeySanctuary.getEnclosureString(i));
+    writer.write("\n-------------------\n");
     Monkey poyu = new Monkey(MonkeyType.HOWLER, "Poyu",
         12.2, AnimalSex.MALE,
         7, MonkeyFoodType.NUTS);
-    writer.write("\nNow we have a new Monkey!\n");
+    writer.write("\nNow we have a new Monkey Poyu!\n");
     writer.write(poyu.toString());
     poyu.receiveMedicine();
-    writer.write("It's clean, will go to enclosure\n");
+    writer.write("\n-------------------\n");
+    writer.write("It's assessed now, will go to enclosure:\n");
     i = monkeySanctuary.receive(poyu);
     writer.write(monkeySanctuary.getEnclosureString(i));
-    writer.write("All done. Get the Food List:\n");
+    writer.write("\n-------------------\n");
+    writer.write("Let's test how the Species reside by looking Up Poyu's Species:\n");
+    Map<String, Object> map = monkeySanctuary.hasSpeciesGeneral(poyu,
+        MonkeySanctuary.HousingType.ENC);
+    writer.write(map.toString());
+    writer.write("\n-------------------\n");
+    writer.write("And the Signs of the enclosure 1:\n");
+    Object listObject = monkeySanctuary.lookUp(dollie)
+        .get(AbstractMonkeyHousing.LOOKUP_MAP_KEY_DETAILS);
+    writer.write(listObject.toString());
+    writer.write("\n-------------------\n");
+    writer.write("Print the monkey details:\n");
+    writer.write(monkeySanctuary.getDetail().toString());
+    writer.write("\n-------------------\n");
+    writer.write("All done. Get the Favourite Food List:\n");
     writer.write(monkeySanctuary.getFoodList().toString());
+    writer.write("\n---------END----------\n");
   }
 
   /**
