@@ -104,7 +104,7 @@ public class Monkey implements Animal {
   @Override
   public String toString() {
     StringBuilder stringBuilder = new StringBuilder();
-    stringBuilder.append("Monkey - No.").append(this.getId()).append("\nName: ")
+    stringBuilder.append("Monkey").append("\nName: ")
         .append(this.getName()).append("\nSpecies: ").append(getMonkeyType().name())
         .append("\nSex: ").append(getMonkeySex().name()).append("\nSize: ")
         .append(getMonkeySize().name()).append("\nFavourite Food: ")
