@@ -70,10 +70,13 @@ public class MonkeySanctuaryDriver {
         MonkeySanctuary.HousingType.ENC);
     writer.write(map.toString());
     writer.write("\n-------------------\n");
-    writer.write("And the Signs of the enclosure 1:\n");
+    writer.write("\nAnd look up for Dollie :\n");
     Object listObject = monkeySanctuary.lookUp(dollie)
         .get(AbstractMonkeyHousing.LOOKUP_MAP_KEY_DETAILS);
     writer.write(listObject.toString());
+    writer.write("\n-------------------\n");
+    writer.write("\nAnd the Signs of the enclosure 1:\n");
+    writer.write(monkeySanctuary.getEnclosureString(i));
     writer.write("\n-------------------\n");
     writer.write("Print the monkey details:\n");
     writer.write(monkeySanctuary.getDetail().toString());

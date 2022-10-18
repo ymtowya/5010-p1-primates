@@ -2,7 +2,7 @@
 ---------START----------
 Initializing the Sanctuary:
 Initializing the Monkey Dollie:
-Monkey - No.1
+Monkey
 Name: Dollie
 Species: GUEREZA
 Sex: FEMALE
@@ -19,7 +19,7 @@ Now look up for Dollie:
 Now give Dollie the medical assessment: 
 Now Dollie's condition is : true
 And we move it to the Enclosure
-Monkey - No.2
+Monkey
 Name: Dollie
 Species: GUEREZA
 Sex: FEMALE
@@ -29,7 +29,7 @@ Favourite Food: INSECTS
 -------------------
 
 Now we have a new Monkey Poyu!
-Monkey - No.3
+Monkey
 Name: Poyu
 Species: HOWLER
 Sex: MALE
@@ -38,7 +38,7 @@ Favourite Food: NUTS
 
 -------------------
 It's assessed now, will go to enclosure:
-Monkey - No.4
+Monkey
 Name: Poyu
 Species: HOWLER
 Sex: MALE
@@ -49,8 +49,19 @@ Favourite Food: NUTS
 Let's test how the Species reside by looking Up Poyu's Species:
 {found=true, monkeyAmounts=[1], housingIds=[2], monkeyHouses=[ENC]}
 -------------------
-And the Signs of the enclosure 1:
+
+And look up for Dollie :
 [{monkeyId=1, htypes=ENC, found=true, housingId=1, unitId=0}]
+-------------------
+
+And the Signs of the enclosure 1:
+Monkey
+Name: Poyu
+Species: HOWLER
+Sex: MALE
+Size: MEDIUM
+Favourite Food: NUTS
+
 -------------------
 Print the monkey details:
 [Dollie - residing in Enclosure - 1
