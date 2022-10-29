@@ -1,0 +1,75 @@
+
+---------START----------
+Initializing the Sanctuary:
+Initializing the Monkey Dollie:
+Monkey
+Name: Dollie
+Species: GUEREZA
+Sex: FEMALE
+Size: LARGE
+Favourite Food: INSECTS
+
+-------------------
+Move the Dollie to the isolation:
+Now the Dollie is in the sanctuary.
+
+-------------------
+Now look up for Dollie: 
+{found=false, details=[{monkeyId=1, htypes=ISO, found=true, housingId=1, unitId=1}]}
+Now give Dollie the medical assessment: 
+Now Dollie's condition is : true
+And we move it to the Enclosure
+Monkey
+Name: Dollie
+Species: GUEREZA
+Sex: FEMALE
+Size: LARGE
+Favourite Food: INSECTS
+
+-------------------
+
+Now we have a new Monkey Poyu!
+Monkey
+Name: Poyu
+Species: HOWLER
+Sex: MALE
+Size: MEDIUM
+Favourite Food: NUTS
+
+-------------------
+It's assessed now, will go to enclosure:
+Monkey
+Name: Poyu
+Species: HOWLER
+Sex: MALE
+Size: MEDIUM
+Favourite Food: NUTS
+
+-------------------
+Let's test how the Species reside by looking Up Poyu's Species:
+{found=true, monkeyAmounts=[1], housingIds=[2], monkeyHouses=[ENC]}
+-------------------
+
+And look up for Dollie :
+[{monkeyId=1, htypes=ENC, found=true, housingId=1, unitId=0}]
+-------------------
+
+And the Signs of the enclosure 1:
+Monkey
+Name: Poyu
+Species: HOWLER
+Sex: MALE
+Size: MEDIUM
+Favourite Food: NUTS
+
+-------------------
+Print the monkey details:
+[Dollie - residing in Enclosure - 1
+, Poyu - residing in Enclosure - 2
+]
+-------------------
+All done. Get the Favourite Food List:
+[INSECTS : 500
+, NUTS : 300
+]
+---------END----------

@@ -45,3 +45,4 @@ hs_err_pid*
 ../peg/
 ../lab00-getting-started/.idea/.gitignore
 ../lab01-stevenson/.idea/.gitignore
+../lab/
